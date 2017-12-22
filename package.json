@@ -1,6 +1,6 @@
 {
   "name": "dav-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command line tool to ease developing with DAV",
   "main": "index.js",
   "bin": {
