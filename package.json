@@ -20,6 +20,7 @@
   },
   "preferGlobal": true,
   "dependencies": {
+    "commander": "^2.12.2",
     "ganache-cli": "^6.0.3"
   }
 }
