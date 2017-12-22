@@ -27,6 +27,10 @@ program
   .option('-p, --port <n>', 'Port for Ethereum node to listen to')
   .parse(process.argv);
 
+if (!process.argv.slice(2).length) {
+  program.help();
+}
+
 console.log(`DAV CLI v${version} - makes developing with DAV easy`+OS.EOL);
 
 // Start a local Ethereum server
