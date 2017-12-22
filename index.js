@@ -1,7 +1,7 @@
 const version = require("./lib/version");
+const OS = require("os");
 
-console.log(`DAV CLI v${version} - makes developing with DAV easy`);
-console.log();
+console.log(`DAV CLI v${version} - makes developing with DAV easy`+OS.EOL);
 
 const ganache = require("ganache-cli");
 const server = ganache.server();
