@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Command line tool to ease developing with DAV",
   "main": "index.js",
+  "bin": {
+    "dav-cli": "bin/dav-cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
