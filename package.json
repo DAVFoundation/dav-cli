@@ -18,5 +18,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "preferGlobal": true
+  "preferGlobal": true,
+  "dependencies": {
+    "ganache-cli": "^6.0.3"
+  }
 }
