@@ -8,7 +8,6 @@
   },
   "license": "MIT",
   "author": "Tal Ater <tal@talater.com>",
-  "main": "index.js",
   "bin": {
     "dav-cli": "bin/dav-cli.js"
   },
