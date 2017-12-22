@@ -8,13 +8,14 @@ program
   .version(version)
   .description('makes developing with DAV easy')
   .option('--start', 'Start a local Ethereum node')
+  .option('-p, --port <n>', 'Port for Ethereum node to listen to')
   .parse(process.argv);
 
 console.log(`DAV CLI v${version} - makes developing with DAV easy`+OS.EOL);
 
 // Start a local Ethereum server
-const port = 8545;
-if (program.start) {
+const port = program.port || 8545;
+if (program.start || program.port) {
   const server = ganache.server();
   server.listen(port, (/*err, blockchain*/) => {
     console.log(`Local Ethereum node running. Listening on port ${port}.`);
