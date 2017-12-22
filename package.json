@@ -1,0 +1,19 @@
+{
+  "name": "dav-cli",
+  "version": "0.0.1",
+  "description": "Command line tool to ease developing with DAV",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAVFoundation/dav-cli.git"
+  },
+  "author": "Tal Ater <tal@talater.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DAVFoundation/dav-cli/issues"
+  },
+  "homepage": "https://github.com/DAVFoundation/dav-cli#readme"
+}
