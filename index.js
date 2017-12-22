@@ -6,8 +6,8 @@ const ganache = require('ganache-cli');
 // Configure the CLI
 program
   .version(version)
-  .option('--start', 'Start a local Ethereum node')
   .description(`DAV CLI v${version} - makes developing with DAV easy`)
+  .option('-s, --start', 'Start a local Ethereum node')
   .option('-p, --port <n>', 'Port for Ethereum node to listen to')
   .parse(process.argv);
 
