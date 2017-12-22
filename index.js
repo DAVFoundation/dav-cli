@@ -37,7 +37,7 @@ console.log(`DAV CLI v${version} - makes developing with DAV easy`+OS.EOL);
 if (program.start || program.port) {
   const port = program.port || 8545;
   const server = ganache.server();
-  server.listen(port, (/*err, blockchain*/) => {
+  server.listen(port, () => {
     console.log(`Local Ethereum node running. Listening on port ${port}.`);
   });
 }
