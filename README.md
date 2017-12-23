@@ -5,11 +5,11 @@ The DAV CLI tool is here to make developing applications and solutions that inte
 
 To get started, install `dav-cli` globally using either of the following commands:
 
-```javascript
-// Install DAV CLI using npm
+```bash
+# Install DAV CLI using npm
 npm install -g dav-cli
 
-// Install DAV CLI using yarn
+# Install DAV CLI using yarn
 yarn global add dav-cli
 ```
 
