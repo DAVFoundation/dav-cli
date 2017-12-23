@@ -1,5 +1,5 @@
 # DAV CLI
-💻 Command line tool to ease developing with DAV
+<img src="./resources/images/dav-cli.gif" width="250" align="right" />
 
 The DAV CLI tool is here to make developing applications and solutions that interact with DAV a much more pleasant experience.
 
