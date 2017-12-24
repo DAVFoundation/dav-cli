@@ -1,27 +1,28 @@
-const deployContracts = async web3 => {
+const deployContract = async (web3, contractDetails) => {
   const deployingAccount = (await web3.eth.getAccounts())[0];
 
-  const compiledContracts = {
-    DAVToken: require('../contracts/DAVToken.json'),
-  };
-
-  // Create DAVToken contract instance
-  const DAVTokenContract = new web3.eth.Contract(
-    compiledContracts.DAVToken.abi,
-    { data: compiledContracts.DAVToken.bytecode },
-  );
-
-  // Estimate gas
-  let gasLimit = await web3.eth.estimateGas({
-    data: compiledContracts.DAVToken.bytecode,
+  // Create contract instance
+  const contract = new web3.eth.Contract(contractDetails.abi, {
+    data: contractDetails.bytecode,
   });
 
-  // Deploy DAVToken contract
-  const DAVToken = await DAVTokenContract.deploy().send({
+  // Estimate gas
+  const gasLimit = await web3.eth.estimateGas({
+    data: contractDetails.bytecode,
+  });
+
+  // Deploy contract
+  return await contract.deploy().send({
     from: deployingAccount,
     gasLimit: gasLimit,
   });
+};
 
+const deployContracts = async web3 => {
+  const DAVToken = await deployContract(
+    web3,
+    require('../contracts/DAVToken.json'),
+  );
   console.log('DAVToken contract: ' + DAVToken.options.address);
 };
 
