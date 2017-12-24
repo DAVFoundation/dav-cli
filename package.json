@@ -21,7 +21,8 @@
   "preferGlobal": true,
   "dependencies": {
     "commander": "^2.12.2",
-    "ganache-cli": "^6.0.3"
+    "ganache-cli": "^6.0.3",
+    "web3": "^1.0.0-beta.27"
   },
   "devDependencies": {
     "eslint": "^4.13.1",
