@@ -2,6 +2,7 @@ const program = require('commander');
 const version = require('./lib/version');
 const OS = require('os');
 const ganache = require('ganache-cli');
+const { deployContracts } = require('./contracts');
 
 program.on('--help', () => {
   console.log();
@@ -39,5 +40,12 @@ if (program.start || program.port) {
   const server = ganache.server();
   server.listen(port, () => {
     console.log(`Local Ethereum node running. Listening on port ${port}.`);
+
+    const Web3 = require('web3');
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider(`http://localhost:${port}`),
+    );
+
+    deployContracts(web3);
   });
 }
