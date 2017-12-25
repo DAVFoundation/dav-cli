@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 const deployContract = async (web3, contractDetails) => {
   const deployingAccount = (await web3.eth.getAccounts())[0];
 
@@ -23,7 +25,9 @@ const deployContracts = async web3 => {
     web3,
     require('../contracts/DAVToken.json'),
   );
-  console.log('DAVToken contract: ' + DAVToken.options.address);
+  console.log(
+    'DAVToken contract: ' + chalk.green.bold(DAVToken.options.address),
+  );
 };
 
 module.exports = {
