@@ -4,6 +4,7 @@ const OS = require('os');
 const chalk = require('chalk');
 const ganache = require('ganache-cli');
 const { deployContracts } = require('./contracts');
+const { contractServer } = require('./contractServer');
 
 program.on('--help', () => {
   console.log();
@@ -39,17 +40,27 @@ console.log(`DAV CLI v${version} - makes developing with DAV easy` + OS.EOL);
 if (program.start || program.port) {
   const port = program.port || 8545;
   const server = ganache.server();
+  const endpoint = `http://localhost:${port}`;
   server.listen(port, () => {
     console.log(
       'Local Ethereum testnet started on ' +
-        chalk.blue.bold.underline(`http://localhost:${port}`),
+        chalk.blue.bold.underline(endpoint),
     );
 
     const Web3 = require('web3');
     const web3 = new Web3(
-      new Web3.providers.HttpProvider(`http://localhost:${port}`),
+      new Web3.providers.HttpProvider(endpoint),
     );
 
-    deployContracts(web3);
+    deployContracts(web3).then(token => {
+      console.log(
+        'DAVToken contract: ' + chalk.green.bold(token.options.address),
+      );
+
+      contractServer({
+        contracts: [{ address: token.options.address }],
+        rpcEndpoint: endpoint
+      }).start();
+    });
   });
 }

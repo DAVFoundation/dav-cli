@@ -21,12 +21,9 @@ const deployContract = async (web3, contractDetails) => {
 };
 
 const deployContracts = async web3 => {
-  const DAVToken = await deployContract(
+  return await deployContract(
     web3,
     require('../contracts/DAVToken.json'),
-  );
-  console.log(
-    'DAVToken contract: ' + chalk.green.bold(DAVToken.options.address),
   );
 };
 
