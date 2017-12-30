@@ -6,7 +6,7 @@ const ganache = require('ganache-cli');
 const { deployContracts } = require('./contracts');
 
 program.on('--help', () => {
-  const helpTex = `
+  console.log(`
   Examples:
 
     - Start a local Ethereum node on the default port
@@ -16,8 +16,7 @@ program.on('--help', () => {
       $ dav-cli --start --port 1234
   
   Find out more at https://developers.dav.network
-  `
-  console.log(helpTex);
+  `);
 });
 
 // Configure the CLI
