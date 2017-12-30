@@ -15,8 +15,7 @@ program.on('--help', () => {
       - Start a local Ethereum node on port 1234
       $ dav-cli --start --port 1234
   
-  Find out more at https://developers.dav.network
-  `);
+  Find out more at https://developers.dav.network`);
 });
 
 // Configure the CLI
