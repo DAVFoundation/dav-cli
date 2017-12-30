@@ -16,6 +16,7 @@
     "url": "git+https://github.com/DAVFoundation/dav-cli.git"
   },
   "scripts": {
+    "start": "./bin/dav-cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
