@@ -1,6 +1,8 @@
 # DAV CLI
 <img src="./resources/images/dav-cli.gif" width="250" align="right" />
 
+[![license](https://img.shields.io/github/license/DAVFoundation/dav-cli.svg?style=flat-square)](https://github.com/DAVFoundation/dav-cli/blob/master/LICENSE)
+
 The DAV CLI tool is here to make developing applications and solutions that interact with DAV a much more pleasant experience.
 
 ### Features:
