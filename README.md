@@ -24,3 +24,5 @@ yarn global add dav-cli
 ```
 
 *NOTE: DAV CLI is written in and installed using Node.js but is useful not just for Node.js or JavaScript development.*
+
+[![Gitter](https://img.shields.io/gitter/room/DAVFoundation/DAV-Contributors.svg?style=flat-square)](https://gitter.im/DAVFoundation/DAV-Contributors)
