@@ -4,14 +4,13 @@ const OS = require('os');
 const fs = require('fs');
 const { sep } = require('path');
 const chalk = require('chalk');
+const { startTestnet } = require('./controllers/blockchain');
 const {
   createPrivateKey,
   openKeystore,
   signRegistration,
   privateKeyToAddress,
 } = require('./lib/cryptography');
-const ganache = require('ganache-cli');
-const { deployContracts } = require('./contracts');
 
 program.on('--help', () => {
   console.log(`
@@ -53,21 +52,7 @@ console.log(`DAV CLI v${version} - makes developing with DAV easy` + OS.EOL);
 
 // Start a local Ethereum server
 if (program.start || program.port) {
-  const port = program.port || 8545;
-  const server = ganache.server();
-  server.listen(port, () => {
-    console.log(
-      'Local Ethereum testnet started on ' +
-        chalk.blue.bold.underline(`http://localhost:${port}`),
-    );
-
-    const Web3 = require('web3');
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider(`http://localhost:${port}`),
-    );
-
-    deployContracts(web3);
-  });
+  startTestnet(program.port);
 }
 
 // Generate a new key pair
