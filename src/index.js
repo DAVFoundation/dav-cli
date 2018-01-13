@@ -1,16 +1,9 @@
 const program = require('commander');
 const version = require('./lib/version');
 const OS = require('os');
-const fs = require('fs');
-const { sep } = require('path');
 const chalk = require('chalk');
 const { startTestnet } = require('./controllers/blockchain');
-const {
-  createPrivateKey,
-  openKeystore,
-  signRegistration,
-  privateKeyToAddress,
-} = require('./lib/cryptography');
+const { generateKeyFile, registerIdentity } = require('./controllers/identity');
 
 program.on('--help', () => {
   console.log(`
@@ -57,28 +50,16 @@ if (program.start || program.port) {
 
 // Generate a new key pair
 if (program.genkey) {
-  // generate the key
-  const privateKey = createPrivateKey();
-
-  // Save the key to filesystem
-  const keyFilename = program.genkey + sep + '0x' + privateKey.address;
-  fs.writeFileSync(keyFilename, JSON.stringify(privateKey));
-
+  const keyFilename = generateKeyFile(program.genkey);
   console.log('Keyfile saved to ' + chalk.blue.bold.underline(keyFilename));
 }
 
 // Register a new Identity on the blockchain
 if (program.register) {
-  const keyFilename = program.register;
   try {
-    const privateKey = openKeystore(JSON.parse(fs.readFileSync(keyFilename)));
-    const address = privateKeyToAddress(privateKey);
-    const signature = signRegistration(address, privateKey);
+    const signature = registerIdentity(program.register);
     console.log(signature);
-  } catch (error) {
-    console.log(error);
-    console.log(
-      'Unable to open key file ' + chalk.blue.bold.underline(keyFilename),
-    );
+  } catch (e) {
+    console.error(chalk.red.bold(e.message));
   }
 }
