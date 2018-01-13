@@ -4,7 +4,12 @@ const OS = require('os');
 const fs = require('fs');
 const { sep } = require('path');
 const chalk = require('chalk');
-const crypto = require('./lib/cryptography');
+const {
+  createPrivateKey,
+  openKeystore,
+  signRegistration,
+  privateKeyToAddress,
+} = require('./lib/cryptography');
 const ganache = require('ganache-cli');
 const { deployContracts } = require('./contracts');
 
@@ -21,6 +26,9 @@ program.on('--help', () => {
     - Generate a new private-public key pair and save it to the ~/.dav directory
       $ dav-cli --genkey ~/.dav
   
+    - Register a new Identity on the blockchain
+      $ dav-cli --register ~/.dav/0xd14e3aca4d62c8e7b150fc63dabb8fb4b3485263
+  
   Find out more at https://developers.dav.network`);
 });
 
@@ -34,6 +42,7 @@ program
     '--genkey <s>',
     'Generate a private-public key pair for a new Identity',
   )
+  .option('-r, --register <s>', 'Register a new Identity on the blockchain')
   .parse(process.argv);
 
 if (!process.argv.slice(2).length) {
@@ -64,11 +73,27 @@ if (program.start || program.port) {
 // Generate a new key pair
 if (program.genkey) {
   // generate the key
-  const privateKey = crypto.createPrivateKey();
+  const privateKey = createPrivateKey();
 
   // Save the key to filesystem
   const keyFilename = program.genkey + sep + '0x' + privateKey.address;
   fs.writeFileSync(keyFilename, JSON.stringify(privateKey));
 
   console.log('Keyfile saved to ' + chalk.blue.bold.underline(keyFilename));
+}
+
+// Register a new Identity on the blockchain
+if (program.register) {
+  const keyFilename = program.register;
+  try {
+    const privateKey = openKeystore(JSON.parse(fs.readFileSync(keyFilename)));
+    const address = privateKeyToAddress(privateKey);
+    const signature = signRegistration(address, privateKey);
+    console.log(signature);
+  } catch (error) {
+    console.log(error);
+    console.log(
+      'Unable to open key file ' + chalk.blue.bold.underline(keyFilename),
+    );
+  }
 }
