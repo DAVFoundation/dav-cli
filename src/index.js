@@ -1,7 +1,10 @@
 const program = require('commander');
 const version = require('./lib/version');
 const OS = require('os');
+const fs = require('fs');
+const { sep } = require('path');
 const chalk = require('chalk');
+const crypto = require('./lib/cryptography');
 const ganache = require('ganache-cli');
 const { deployContracts } = require('./contracts');
 
@@ -15,6 +18,9 @@ program.on('--help', () => {
     - Start a local Ethereum node on port 1234
       $ dav-cli --start --port 1234
   
+    - Generate a new private-public key pair and save it to the ~/.dav directory
+      $ dav-cli --genkey ~/.dav
+  
   Find out more at https://developers.dav.network`);
 });
 
@@ -24,6 +30,10 @@ program
   .description(`DAV CLI v${version} - makes developing with DAV easy`)
   .option('-s, --start', 'Start a local Ethereum node')
   .option('-p, --port <n>', 'Port for Ethereum node to listen to')
+  .option(
+    '-g, --genkey <s>',
+    'Generate a private-public key pair for a new identity',
+  )
   .parse(process.argv);
 
 if (!process.argv.slice(2).length) {
@@ -49,4 +59,16 @@ if (program.start || program.port) {
 
     deployContracts(web3);
   });
+}
+
+// Generate a new key pair
+if (program.genkey) {
+  // generate the key
+  const privateKey = crypto.createPrivateKey();
+
+  // Save the key to filesystem
+  const keyFilename = program.genkey + sep + privateKey.address;
+  fs.writeFileSync(keyFilename, JSON.stringify(privateKey));
+
+  console.log('Keyfile saved to ' + chalk.blue.bold.underline(keyFilename));
 }
