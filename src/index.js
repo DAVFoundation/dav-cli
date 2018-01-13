@@ -31,7 +31,7 @@ program
   .option('-s, --start', 'Start a local Ethereum node')
   .option('-p, --port <n>', 'Port for Ethereum node to listen to')
   .option(
-    '-g, --genkey <s>',
+    '--genkey <s>',
     'Generate a private-public key pair for a new identity',
   )
   .parse(process.argv);
