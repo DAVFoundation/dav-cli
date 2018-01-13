@@ -67,7 +67,7 @@ if (program.genkey) {
   const privateKey = crypto.createPrivateKey();
 
   // Save the key to filesystem
-  const keyFilename = program.genkey + sep + privateKey.address;
+  const keyFilename = program.genkey + sep + '0x' + privateKey.address;
   fs.writeFileSync(keyFilename, JSON.stringify(privateKey));
 
   console.log('Keyfile saved to ' + chalk.blue.bold.underline(keyFilename));
