@@ -4,6 +4,10 @@ const OS = require('os');
 const chalk = require('chalk');
 const { startTestnet } = require('./controllers/blockchain');
 const { generateKeyFile, registerIdentity } = require('./controllers/identity');
+const updateNotifier = require('update-notifier');
+const pkg = require('../package.json');
+
+updateNotifier({ pkg }).notify();
 
 program.on('--help', () => {
   console.log(`
@@ -11,16 +15,16 @@ program.on('--help', () => {
 
     - Start a local Ethereum node on the default port
       $ dav-cli --start
-  
+
     - Start a local Ethereum node on port 1234
       $ dav-cli --start --port 1234
-  
+
     - Generate a new private-public key pair and save it to the ~/.dav directory
       $ dav-cli --genkey ~/.dav
-  
+
     - Register a new Identity on the blockchain
       $ dav-cli --register ~/.dav/0xd14e3aca4d62c8e7b150fc63dabb8fb4b3485263
-  
+
   Find out more at https://developers.dav.network`);
 });
 
@@ -32,7 +36,7 @@ program
   .option('-p, --port <n>', 'Port for Ethereum node to listen to')
   .option(
     '--genkey <s>',
-    'Generate a private-public key pair for a new Identity',
+    'Generate a private-public key pair for a new Identity'
   )
   .option('-r, --register <s>', 'Register a new Identity on the blockchain')
   .parse(process.argv);
