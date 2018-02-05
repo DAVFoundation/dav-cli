@@ -7,24 +7,15 @@ const { generateKeyFile, registerIdentity } = require('./controllers/identity');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 
-console.log(pkg);
+updateNotifier({ pkg }).notify();
+const notifier = updateNotifier({
+  pkg,
+  updateCheckInterval: 0
+});
 
-// Checks for available update and returns an instance
-const notifier = updateNotifier({ pkg });
-
-// Notify using the built-in convenience method
-notifier.notify();
-
-// `notifier.update` contains some useful info about the update
-console.log(notifier.update);
-/*
-{
-	latest: '1.0.1',
-	current: '1.0.0',
-	type: 'patch', // Possible values: latest, major, minor, patch, prerelease, build
-	name: 'pageres'
+if (notifier.update) {
+  console.log(`Update available: ${notifier.update.latest}`);
 }
-*/
 
 program.on('--help', () => {
   console.log(`
