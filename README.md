@@ -8,6 +8,7 @@ The DAV CLI tool is here to make developing applications and solutions that inte
 ### Features:
 
 * Easily run a local Ethereum node containing DAV contracts
+* Generate Identities secured by private public keys and register them on the blockchain
 * Easily scaffold a new project, or modify an existing one to interact with DAV (under development)
 * More coming soon
 
