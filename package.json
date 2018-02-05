@@ -26,10 +26,11 @@
     "ganache-cli": "^6.0.3",
     "js-sha3": "^0.7.0",
     "keythereum": "^1.0.2",
-    "web3": "^1.0.0-beta.27"
+    "update-notifier": "^2.3.0",
+    "web3": "^1.0.0-beta2"
   },
   "devDependencies": {
-    "eslint": "^4.16.0",
+    "eslint": "^4.17.0",
     "prettier": "^1.10.2"
   },
   "preferGlobal": true

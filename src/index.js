@@ -8,14 +8,6 @@ const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 
 updateNotifier({ pkg }).notify();
-const notifier = updateNotifier({
-  pkg,
-  updateCheckInterval: 0
-});
-
-if (notifier.update) {
-  console.log(`Update available: ${notifier.update.latest}`);
-}
 
 program.on('--help', () => {
   console.log(`
