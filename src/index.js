@@ -4,10 +4,7 @@ const OS = require('os');
 const chalk = require('chalk');
 const { startTestnet } = require('./controllers/blockchain');
 const { generateKeyFile, registerIdentity } = require('./controllers/identity');
-const updateNotifier = require('update-notifier');
-const pkg = require('../package.json');
-
-updateNotifier({ pkg }).notify();
+require('./lib/updateNotifier');
 
 program.on('--help', () => {
   console.log(`
