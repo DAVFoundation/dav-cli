@@ -1,6 +1,6 @@
 {
   "name": "dav-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Command line tool to ease developing with DAV",
   "homepage": "https://github.com/DAVFoundation/dav-cli#readme",
   "bugs": {
@@ -26,8 +26,12 @@
     "ganache-cli": "^6.0.3",
     "js-sha3": "^0.7.0",
     "keythereum": "^1.0.2",
+<<<<<<< HEAD
     "update-notifier": "^2.3.0",
     "web3": "^1.0.0-beta2"
+=======
+    "web3": "^1.0.0-beta.29"
+>>>>>>> 964c8f59113363e169d74eee556c815447622e1a
   },
   "devDependencies": {
     "eslint": "^4.17.0",
