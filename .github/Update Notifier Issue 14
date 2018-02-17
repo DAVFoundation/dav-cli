@@ -1,0 +1,29 @@
+## Description
+This PR adds a notification to the user when an npm update for dav-cli is available.  It uses the npm module update-notifier.
+
+## Related Issue
+Add update notification functionality #14
+https://github.com/DAVFoundation/dav-cli/issues/14
+
+## Motivation and Context
+This change will notify users when their version of dav-cli is out of date.  It will be important during the rapid development cycle that users be aware when their version is not up to date.
+
+## How Has This Been Tested?
+The update-notifier was tested by running against versions that both required and update and versions that did not.  The update-notifier acted according, only showing the notifier when the dav-cli was out of date compared to the most current version.
+
+## Screenshots (if appropriate):
+
+## Types of changes
+<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [x] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to change)
+
+## Checklist:
+<!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
+<!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
+- [x] My code follows the code style of this project.
+- [ ] My change requires a change to the documentation.
+- [x] I have read the **CONTRIBUTING** document.
+- [x] I have added tests to cover my changes.
+- [x] All new and existing tests passed.
