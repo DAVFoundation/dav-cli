@@ -3,6 +3,6 @@ const pkg = require('../../package.json');
 
 const notifier = updateNotifier({
   pkg,
-  updateCheckInterval: 0
+  updateCheckInterval: 86400000 // 1 day
 });
 notifier.notify();
