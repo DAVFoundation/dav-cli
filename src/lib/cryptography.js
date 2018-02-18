@@ -1,7 +1,9 @@
 const keythereum = require('keythereum');
 const { keccak256 } = require('js-sha3');
 const { ecsign } = require('ethereumjs-util');
-const defaultPassword = '';
+const config = require('../config');
+
+const defaultPassword = config('password_default');
 
 /**
  * Generates a new private key and returns it in keystore secret-storage format
