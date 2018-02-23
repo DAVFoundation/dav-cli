@@ -1,6 +1,6 @@
 const program = require('commander');
 const version = require('./lib/version');
-const OS = require('os');
+const { EOL } = require('os');
 const chalk = require('chalk');
 const { startTestnet } = require('./controllers/blockchain');
 const { generateKeyFile, registerIdentity } = require('./controllers/identity');
@@ -42,7 +42,7 @@ if (!process.argv.slice(2).length) {
   program.help();
 }
 
-console.log(`DAV CLI v${version} - makes developing with DAV easy` + OS.EOL);
+console.log(`DAV CLI v${version} - makes developing with DAV easy` + EOL);
 
 // Start a local Ethereum server
 if (program.start || program.port) {
