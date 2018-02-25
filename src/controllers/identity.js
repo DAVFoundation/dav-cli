@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 const { sep } = require('path');
 const {
   createPrivateKey,
@@ -13,7 +13,7 @@ const generateKeyFile = directory => {
 
   // Save the key to filesystem
   const keyFilename = directory + sep + '0x' + privateKey.address;
-  fs.writeFileSync(keyFilename, JSON.stringify(privateKey));
+  writeFileSync(keyFilename, JSON.stringify(privateKey));
 
   return keyFilename;
 };
@@ -21,7 +21,7 @@ const generateKeyFile = directory => {
 const registerIdentity = keyFilename => {
   let privateKey;
   try {
-    privateKey = openKeystore(JSON.parse(fs.readFileSync(keyFilename)));
+    privateKey = openKeystore(JSON.parse(readFileSync(keyFilename)));
   } catch (error) {
     throw new Error('Unable to open key file');
   }
