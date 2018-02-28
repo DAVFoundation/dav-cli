@@ -22,7 +22,7 @@
   "dependencies": {
     "chalk": "^2.3.1",
     "commander": "^2.14.1",
-    "ethereumjs-util": "^5.1.4",
+    "ethereumjs-util": "^5.1.5",
     "ganache-cli": "^6.0.3",
     "js-sha3": "^0.7.0",
     "keythereum": "^1.0.2",
@@ -30,8 +30,8 @@
     "web3": "^1.0.0-beta.30"
   },
   "devDependencies": {
-    "eslint": "^4.17.0",
-    "prettier": "^1.10.2"
+    "eslint": "^4.18.1",
+    "prettier": "^1.11.0"
   },
   "preferGlobal": true
 }
