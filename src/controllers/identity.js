@@ -4,7 +4,7 @@ const {
   createPrivateKey,
   openKeystore,
   signRegistration,
-  privateKeyToAddress,
+  privateKeyToAddress
 } = require('../lib/cryptography');
 
 const generateKeyFile = directory => {
@@ -31,5 +31,5 @@ const registerIdentity = keyFilename => {
 
 module.exports = {
   generateKeyFile,
-  registerIdentity,
+  registerIdentity
 };

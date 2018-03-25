@@ -5,31 +5,31 @@ const deployContract = async (web3, contractDetails) => {
 
   // Create contract instance
   const contract = new web3.eth.Contract(contractDetails.abi, {
-    data: contractDetails.bytecode,
+    data: contractDetails.bytecode
   });
 
   // Estimate gas
   const gasLimit = await web3.eth.estimateGas({
-    data: contractDetails.bytecode,
+    data: contractDetails.bytecode
   });
 
   // Deploy contract
   return await contract.deploy().send({
     from: deployingAccount,
-    gasLimit: gasLimit,
+    gasLimit: gasLimit
   });
 };
 
 const deployContracts = async web3 => {
   const DAVToken = await deployContract(
     web3,
-    require('../../contracts/DAVToken.json'),
+    require('../../contracts/DAVToken.json')
   );
   console.log(
-    'DAVToken contract: ' + chalk.green.bold(DAVToken.options.address),
+    'DAVToken contract: ' + chalk.green.bold(DAVToken.options.address)
   );
 };
 
 module.exports = {
-  deployContracts,
+  deployContracts
 };
