@@ -7,4 +7,3 @@ const notifier = updateNotifier({
     updateCheckInterval: config('update_check_interval')
   });
   notifier.notify();
-
