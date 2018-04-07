@@ -26,7 +26,7 @@
     "ganache-cli": "^6.1.0",
     "js-sha3": "^0.7.0",
     "keythereum": "^1.0.2",
-    "update-notifier": "^2.3.0",
+    "update-notifier": "^2.4.0",
     "web3": "1.0.0-beta.33"
   },
   "devDependencies": {
