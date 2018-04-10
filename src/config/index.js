@@ -1,5 +1,7 @@
 const config = {
-  password_default: ''
+  password_default : '',
+  update_check_interval : 86400000, // 1 day
+
 };
 
 module.exports = key => {
