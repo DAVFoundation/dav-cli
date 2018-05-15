@@ -6,26 +6,26 @@
   "bugs": {
     "url": "https://github.com/DAVFoundation/dav-cli/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAVFoundation/dav-cli.git"
+  },
   "license": "MIT",
   "author": "Tal Ater <tal@talater.com>",
   "bin": {
     "dav-cli": "bin/dav-cli.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DAVFoundation/dav-cli.git"
   },
   "scripts": {
     "start": "./bin/dav-cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "chalk": "^2.4.0",
+    "chalk": "^2.4.1",
     "commander": "^2.15.1",
-    "ethereumjs-util": "^5.1.5",
+    "ethereumjs-util": "^5.2.0",
     "ganache-cli": "^6.1.0",
     "js-sha3": "^0.7.0",
-    "keythereum": "^1.0.3",
+    "keythereum": "^1.0.4",
     "update-notifier": "^2.5.0",
     "web3": "1.0.0-beta.34"
   },
