@@ -17,7 +17,7 @@ const createPrivateKey = (password = defaultPassword) => {
     password,
     privateKey.privateKey,
     privateKey.salt,
-    privateKey.iv
+    privateKey.iv,
   );
 };
 
@@ -36,7 +36,7 @@ const signRegistration = (address, privateKey) => {
     address,
     v: v,
     r: '0x' + r,
-    s: '0x' + s
+    s: '0x' + s,
   };
 };
 
@@ -47,5 +47,5 @@ module.exports = {
   createPrivateKey,
   openKeystore,
   signRegistration,
-  privateKeyToAddress
+  privateKeyToAddress,
 };

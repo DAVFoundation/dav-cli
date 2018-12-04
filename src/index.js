@@ -33,7 +33,7 @@ program
   .option('-p, --port <n>', 'Port for Ethereum node to listen to')
   .option(
     '--genkey <s>',
-    'Generate a private-public key pair for a new Identity'
+    'Generate a private-public key pair for a new Identity',
   )
   .option('-r, --register <s>', 'Register a new Identity on the blockchain')
   .parse(process.argv);

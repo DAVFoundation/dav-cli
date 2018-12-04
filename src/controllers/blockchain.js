@@ -7,12 +7,12 @@ const startTestnet = (port = 8545) => {
   server.listen(port, () => {
     console.log(
       'Local Ethereum testnet started on ' +
-        chalk.blue.bold.underline(`http://localhost:${port}`)
+        chalk.blue.bold.underline(`http://localhost:${port}`),
     );
 
     const Web3 = require('web3');
     const web3 = new Web3(
-      new Web3.providers.HttpProvider(`http://localhost:${port}`)
+      new Web3.providers.HttpProvider(`http://localhost:${port}`),
     );
 
     deployContracts(web3);
@@ -20,5 +20,5 @@ const startTestnet = (port = 8545) => {
 };
 
 module.exports = {
-  startTestnet
+  startTestnet,
 };
