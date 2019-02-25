@@ -23,7 +23,7 @@
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "ethereumjs-util": "^5.2.0",
-    "ganache-cli": "^6.2.3",
+    "ganache-cli": "^6.3.0",
     "js-sha3": "^0.7.0",
     "keythereum": "^1.0.4",
     "update-notifier": "^2.5.0",
