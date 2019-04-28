@@ -23,7 +23,7 @@
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "ethereumjs-util": "^6.1.0",
-    "ganache-cli": "^6.4.2",
+    "ganache-cli": "^6.4.3",
     "js-sha3": "^0.8.0",
     "keythereum": "^1.0.4",
     "update-notifier": "^2.5.0",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^5.16.0",
-    "prettier": "^1.16.4"
+    "prettier": "^1.17.0"
   },
   "preferGlobal": true
 }
