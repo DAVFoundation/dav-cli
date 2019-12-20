@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const program = require('commander');
 const version = require('./lib/version');
 const { EOL } = require('os');

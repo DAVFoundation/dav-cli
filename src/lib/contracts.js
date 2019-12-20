@@ -1,5 +1,4 @@
 const chalk = require('chalk');
-const util = require('util');
 
 const deployContract = async (web3, contractDetails, args) => {
   const deployingAccount = (await web3.eth.getAccounts())[0];
@@ -17,7 +16,7 @@ const deployContract = async (web3, contractDetails, args) => {
   // Deploy contract
   return await contract.deploy({ arguments: args }).send({
     from: deployingAccount,
-    gasLimit: gasLimit
+    gasLimit: gasLimit * 3
   });
 };
 
@@ -26,13 +25,9 @@ const contractJsonIdentity = require('../../contracts/Identity.json');
 const contractJsonBasicMission = require('../../contracts/BasicMission.json');
 
 const deployContracts = async web3 => {
-  try {
-    const contractDAVToken = await deploySingleContract(web3, contractJsonDAVToken, null);
-    const contractIdentity = await deploySingleContract(web3, contractJsonIdentity, [contractDAVToken.options.address]);
-    const contractBasicMission = await deploySingleContract(web3, contractJsonBasicMission, [contractIdentity.options.address, contractDAVToken.options.address]);
-  } catch (err) {
-    console.error(util.inspect(err));
-  }
+  const contractDAVToken = await deploySingleContract(web3, contractJsonDAVToken, null);
+  const contractIdentity = await deploySingleContract(web3, contractJsonIdentity, [contractDAVToken.options.address]);
+  const contractBasicMission = await deploySingleContract(web3, contractJsonBasicMission, [contractIdentity.options.address, contractDAVToken.options.address]);
 };
 
 async function deploySingleContract(web3, contractJson, args) {

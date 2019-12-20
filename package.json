@@ -16,7 +16,7 @@
     "dav-cli": "bin/dav-cli.js"
   },
   "scripts": {
-    "start": "./bin/dav-cli.js",
+    "start": "./bin/dav-cli.js --start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
