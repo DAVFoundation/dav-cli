@@ -23,11 +23,12 @@
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "ethereumjs-util": "^6.1.0",
+    "ethereumjs-wallet": "^0.6.3",
     "ganache-cli": "^6.4.3",
     "js-sha3": "^0.8.0",
     "keythereum": "^1.0.4",
     "update-notifier": "^2.5.0",
-    "web3": "1.0.0-beta.34"
+    "web3": "1.0.0-beta.36"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

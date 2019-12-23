@@ -25,9 +25,10 @@ const contractJsonIdentity = require('../../contracts/Identity.json');
 const contractJsonBasicMission = require('../../contracts/BasicMission.json');
 
 const deployContracts = async web3 => {
-  const contractDAVToken = await deploySingleContract(web3, contractJsonDAVToken, null);
+  const contractDAVToken = await deploySingleContract(web3, contractJsonDAVToken, []);
   const contractIdentity = await deploySingleContract(web3, contractJsonIdentity, [contractDAVToken.options.address]);
   const contractBasicMission = await deploySingleContract(web3, contractJsonBasicMission, [contractIdentity.options.address, contractDAVToken.options.address]);
+  return { contractDAVToken, contractIdentity, contractBasicMission };
 };
 
 async function deploySingleContract(web3, contractJson, args) {
