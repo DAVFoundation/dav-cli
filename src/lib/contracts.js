@@ -1,5 +1,7 @@
 const chalk = require('chalk');
 
+const TOTAL_DAV_SUPPLY = '0xffffffffffffffffffffffffffff';
+
 const deployContract = async (web3, contractDetails, args) => {
   const deployingAccount = (await web3.eth.getAccounts())[0];
 
@@ -25,7 +27,7 @@ const contractJsonIdentity = require('../../contracts/Identity.json');
 const contractJsonBasicMission = require('../../contracts/BasicMission.json');
 
 const deployContracts = async web3 => {
-  const contractDAVToken = await deploySingleContract(web3, contractJsonDAVToken, []);
+  const contractDAVToken = await deploySingleContract(web3, contractJsonDAVToken, [TOTAL_DAV_SUPPLY]);
   const contractIdentity = await deploySingleContract(web3, contractJsonIdentity, [contractDAVToken.options.address]);
   const contractBasicMission = await deploySingleContract(web3, contractJsonBasicMission, [contractIdentity.options.address, contractDAVToken.options.address]);
   return { contractDAVToken, contractIdentity, contractBasicMission };
@@ -34,6 +36,14 @@ const deployContracts = async web3 => {
 async function deploySingleContract(web3, contractJson, args) {
   console.log(`Deploying ${contractJson.contractName}...`);
   const contract = await deployContract(web3, contractJson, args);
+  contract.events.allEvents(
+    {
+      fromBlock: 0,
+      toBlock: 'latest'
+    }, (...args) => {
+      console.log(chalk.blue(`Contract Event (${contractJson.contractName}): `), chalk.blue.bold(args.join(' , ')));
+    });
+
   console.log(`${contractJson.contractName} contract: ${chalk.green.bold(contract.options.address)}`);
   return contract;
 }

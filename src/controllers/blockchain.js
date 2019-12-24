@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const util = require('util');
 const eth = require('ethereumjs-wallet');
 const Web3 = require('web3');
+require('events').EventEmitter.defaultMaxListeners = 100;
 
 const REGISTRATION_REQUEST_HASH = new Web3().utils.sha3(
   'DAV Identity Registration'
@@ -13,15 +14,20 @@ const LOTS_OF = '0xffffffffffffffffffffffffffff';
 const NUM_ACCOUNTS = 2;
 const PORT = 8545;
 
+
 const startTestnet = (port = PORT) => {
   let accounts = Array(NUM_ACCOUNTS).fill(undefined).map(() => eth.generate());
   const server = ganache.server({
     accounts: accounts.map((account) => ({
       balance: LOTS_OF,
       secretKey: account.getPrivateKeyString()
-    }))
+    })),
+    logger: {
+      log: (...args) => { console.log(chalk.cyan('Genache Log: '), chalk.magenta(args.join(' , '))); }
+    },
+    ws: true
+    // , debug: true
   });
-
 
   server.listen(port, async () => {
     try {
@@ -32,35 +38,42 @@ const startTestnet = (port = PORT) => {
         chalk.blue.bold.underline(ethNodeUrl)
       );
 
-      const web3 = new Web3(
-        new Web3.providers.HttpProvider(ethNodeUrl)
-      );
+      // const provider = server.provider;
+      const web3 = new Web3(new Web3.providers.WebsocketProvider(ethNodeUrl));
 
       const { contractDAVToken, contractIdentity/* , contractBasicMission */ } = await deployContracts(web3);
-
 
       await Promise.all(accounts.map(async account => {
         await registerAccount(web3, contractIdentity, account);
         // await transferDAV(web3, contractDAVToken, accounts[0], account);
       }));
 
+      console.log('Get balance 0:');
       const balance0 = await callContractMethod(
         contractDAVToken.methods.balanceOf(accounts[0].getAddressString()));
+
+      console.log('Get balance 1:');
       const balance1a = await callContractMethod(
         contractDAVToken.methods.balanceOf(accounts[1].getAddressString()));
 
+      console.log('Transfer:');
       const res = await callContractTransaction(web3,
-        contractDAVToken.methods.transfer(accounts[1].getAddressString(), '1000000'),
+        contractDAVToken.methods.transfer(accounts[1].getAddressString(), '0x1000000'),
         accounts[0].getAddressString(),
         accounts[1].getAddressString(),
         '0',
         accounts[0].getPrivateKeyString()
       );
 
+      console.log('Get Tx Status:');
       const status = await web3.eth.getTransactionReceipt(res);
+
+      console.log('Get balance 1:');
       let balance1b = await callContractMethod(
         contractDAVToken.methods.balanceOf(accounts[1].getAddressString()));
-      console.log(balance0, balance1a, balance1b, status);
+      console.log(`Accnt 0: ${accounts[0].getAddressString()} \t Balance: ${balance0}`);
+      console.log(`Accnt 1: ${accounts[1].getAddressString()} \t Before: ${balance1a} \t After: ${balance1b}`);
+      console.log(util.inspect(status));
 
       accounts.forEach(account => {
         console.log(`Addr: ${chalk.magenta.underline(account.getAddressString())} PrivateKey: ${chalk.gray.bold(account.getPrivateKeyString())}`);
