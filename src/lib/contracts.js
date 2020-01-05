@@ -41,7 +41,7 @@ async function deploySingleContract(web3, contractJson, args) {
       fromBlock: 0,
       toBlock: 'latest'
     }, (...args) => {
-      console.log(chalk.blue(`Contract Event (${contractJson.contractName}): `), chalk.blue.bold(args.join(' , ')));
+      // console.log(chalk.blue(`Contract Event (${contractJson.contractName}): `), chalk.blue.bold(args.map(arg => JSON.stringify(arg)).join(' , ')));
     });
 
   console.log(`${contractJson.contractName} contract: ${chalk.green.bold(contract.options.address)}`);
