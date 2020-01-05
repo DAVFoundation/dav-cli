@@ -49,7 +49,7 @@ const startTestnet = (port = PORT) => {
       }));
 
       console.log('Get balance 0:');
-      const balance0 = await callContractMethod(
+      const balance0a = await callContractMethod(
         contractDAVToken.methods.balanceOf(accounts[0].getAddressString()));
 
       console.log('Get balance 1:');
@@ -60,7 +60,7 @@ const startTestnet = (port = PORT) => {
       const res = await callContractTransaction(web3,
         contractDAVToken.methods.transfer(accounts[1].getAddressString(), '0x1000000'),
         accounts[0].getAddressString(),
-        accounts[1].getAddressString(),
+        contractDAVToken.options.address,
         '0',
         accounts[0].getPrivateKeyString()
       );
@@ -68,10 +68,14 @@ const startTestnet = (port = PORT) => {
       console.log('Get Tx Status:');
       const status = await web3.eth.getTransactionReceipt(res);
 
+      console.log('Get balance 0:');
+      const balance0b = await callContractMethod(
+        contractDAVToken.methods.balanceOf(accounts[0].getAddressString()));
+
       console.log('Get balance 1:');
       let balance1b = await callContractMethod(
         contractDAVToken.methods.balanceOf(accounts[1].getAddressString()));
-      console.log(`Accnt 0: ${accounts[0].getAddressString()} \t Balance: ${balance0}`);
+      console.log(`Accnt 0: ${accounts[0].getAddressString()} \t Balance: ${balance0a} \t After: ${balance0b}`);
       console.log(`Accnt 1: ${accounts[1].getAddressString()} \t Before: ${balance1a} \t After: ${balance1b}`);
       console.log(util.inspect(status));
 
